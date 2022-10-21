@@ -55,6 +55,8 @@ jobs:
           mkdir lib
           mv src ./lib/
           ls
+          ls ./lib
+          ls ./lib/src
           # mkdir -p ci/test_http
           # cp examples/HTTP/HTTP.ino tests/test_http/main.cpp
           # cp examples/HTTP/HTTPS.ino tests/test_https/main.cpp
