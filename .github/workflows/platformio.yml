@@ -46,7 +46,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --upgrade platformio
-          pio update
+          platformio update
       - name: Build run
         run: |
           pwd
@@ -56,4 +56,4 @@ jobs:
 #          cp examples/HTTP/HTTPS.ino tests/test_https/main.cpp
           # globally install the esp32FOTA library from local folder, don't update the platformio.ini
 #          pio lib install --no-save file://$(realpath ./)
-          pio run
+          platformio run
