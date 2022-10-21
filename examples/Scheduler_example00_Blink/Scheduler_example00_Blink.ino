@@ -32,6 +32,7 @@
 // #define _TASK_EXTERNAL_TIME      // Custom millis() and micros() methods
 // #define _TASK_THREAD_SAFE        // Enable additional checking for thread safety
 // #define _TASK_SELF_DESTRUCT      // Enable tasks to "self-destruct" after disable
+#include <Arduino.h>
 #include <TaskScheduler.h>
 
 // Debug and Test options
