@@ -10,6 +10,7 @@ on:
     - '**.h'
     - '**.c'
     - '**.ini'
+    - '**.yml'
 
   pull_request:
     branches: [ master ]
