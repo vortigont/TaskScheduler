@@ -51,8 +51,10 @@ jobs:
       - name: Build run
         run: |
           pwd
-          ls
           find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
+          mkdir lib
+          mv src ./lib/
+          ls
           # mkdir -p ci/test_http
           # cp examples/HTTP/HTTP.ino tests/test_http/main.cpp
           # cp examples/HTTP/HTTPS.ino tests/test_https/main.cpp
