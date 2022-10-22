@@ -51,4 +51,4 @@ jobs:
           pwd
           find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
           #mkdir lib && mv src ./lib/
-          platformio ci -lib ./src -c platformio_ci.ini examples
+          platformio ci --lib ./src -c platformio_ci.ini examples
