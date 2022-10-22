@@ -4,13 +4,13 @@ on:
   push:
     branches: [ master, ci ]
     paths:
-    - '*.ino'
-    - '*.cpp'
-    - '*.hpp'
-    - '*.h'
-    - '*.c'
-    - '*.ini'
-    - '*.yml'
+    - '**.ino'
+    - '**.cpp'
+    - '**.hpp'
+    - '**.h'
+    - '**.c'
+    - '**.ini'
+    - '**.yml'
 
   pull_request:
     branches: [ master ]
