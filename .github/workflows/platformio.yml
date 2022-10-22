@@ -36,7 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: PlatformIO Cache
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ~/.platformio
           key: ${{ runner.os }}-pio-${{ hashFiles('**/lockfiles') }}
