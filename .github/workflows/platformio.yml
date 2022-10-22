@@ -28,17 +28,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Cache pip
-        uses: actions/cache@v2
+      - name: PIP Cache
+      - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: ${{ runner.os }}-pip-
-      - name: Cache PlatformIO
-        uses: actions/cache@v2
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: PlatformIO Cache
+        uses: actions/cache@v3
         with:
           path: ~/.platformio
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-pio-${{ hashFiles('**/lockfiles') }}
+          restore-keys: |
+            ${{ runner.os }}-pio-
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
@@ -52,14 +55,5 @@ jobs:
         run: |
           pwd
           find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
-          mkdir lib
-          mv src ./lib/
-          ls
-          ls ./lib
-          ls ./lib/src
-          # mkdir -p ci/test_http
-          # cp examples/HTTP/HTTP.ino tests/test_http/main.cpp
-          # cp examples/HTTP/HTTPS.ino tests/test_https/main.cpp
-          # globally install the esp32FOTA library from local folder, don't update the platformio.ini
-          # pio lib install --no-save file://$(realpath ./)
-          platformio run
+          mkdir lib && mv src ./lib/
+          platformio ci -c platformio_ci.ini
