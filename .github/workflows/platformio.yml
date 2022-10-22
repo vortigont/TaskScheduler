@@ -26,13 +26,13 @@ jobs:
       matrix:
         avr:
           - "examples/Scheduler_example00_Blink"
-          - "Scheduler_example05_StatusRequest"
-          - "Scheduler_example08_LTS"
-          - "Scheduler_example09_TimeCritical"
-          - "Scheduler_example11_Priority"
+          #- "examples/Scheduler_example05_StatusRequest"
+          - "examples/Scheduler_example08_LTS"
+          #- "examples/Scheduler_example09_TimeCritical"
+          #- "examples/Scheduler_example11_Priority"
         esp32:
           - "examples/Scheduler_example00_Blink"
-          - "Scheduler_example05_StatusRequest"
+          - "examples/Scheduler_example05_StatusRequest"
 
     steps:
       - uses: actions/checkout@v3
