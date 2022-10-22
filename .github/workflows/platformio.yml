@@ -4,13 +4,13 @@ on:
   push:
     branches: [ master, ci ]
     paths:
-    - '**.ino'
-    - '**.cpp'
-    - '**.hpp'
-    - '**.h'
-    - '**.c'
-    - '**.ini'
-    - '**.yml'
+    - '*.ino'
+    - '*.cpp'
+    - '*.hpp'
+    - '*.h'
+    - '*.c'
+    - '*.ini'
+    - '*.yml'
 
   pull_request:
     branches: [ master ]
@@ -29,21 +29,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: PIP Cache
-      - uses: actions/cache@v3
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: PlatformIO Cache
-      - uses: actions/cache@v3
+        uses: actions/cache@v3
         with:
           path: ~/.platformio
           key: ${{ runner.os }}-pio-${{ hashFiles('**/lockfiles') }}
           restore-keys: |
             ${{ runner.os }}-pio-
       - name: Set up Python 3.x
-      - uses: actions/setup-python@v2
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
       - name: Install Platformio
