@@ -25,14 +25,14 @@ jobs:
       max-parallel: 2
       matrix:
         avr:
-          #- "examples/Scheduler_example00_Blink"
-          #- "examples/Scheduler_example05_StatusRequest"
+          - "examples/Scheduler_example00_Blink"
+          - "examples/Scheduler_example05_StatusRequest"
           - "examples/Scheduler_example08_LTS"
           - "examples/Scheduler_example09_TimeCritical"
-          #- "examples/Scheduler_example11_Priority"
+          - "examples/Scheduler_example11_Priority"
         esp32:
           - "examples/Scheduler_example00_Blink"
-          #- "examples/Scheduler_example05_StatusRequest"
+          - "examples/Scheduler_example05_StatusRequest"
 
     steps:
       - uses: actions/checkout@v3
@@ -57,11 +57,10 @@ jobs:
       - name: Build run AVR
         run: |
           pwd
-          echo "run AVR"
+          platformio ci --lib ./src -c platformio_ci.ini examples
           #find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
           #mkdir lib && mv src ./lib/
-          #platformio ci --lib ./src -c platformio_ci.ini examples
-          platformio ci --lib ./src -c platformio_ci.ini -e avr_ci ${{ matrix.avr }}
-          platformio ci --lib ./src -c platformio_ci.ini -e esp32_ci ${{ matrix.esp32 }}
+          #platformio ci --lib ./src -c platformio_ci.ini -e avr_ci ${{ matrix.avr }}
+          #platformio ci --lib ./src -c platformio_ci.ini -e esp32_ci ${{ matrix.esp32 }}
         #env:
         #  PLATFORMIO_CI_SRC: ${{ matrix.avr }}
