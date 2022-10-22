@@ -47,9 +47,9 @@ jobs:
       - name: Build run AVR
         run: |
           pwd
+          find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
+          mkdir lib && mv src ./lib/
           platformio ci --lib ./src -c platformio_ci.ini examples
-          #find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
-          #mkdir lib && mv src ./lib/
           #platformio ci --lib ./src -c platformio_ci.ini -e avr_ci ${{ matrix.avr }}
           #platformio ci --lib ./src -c platformio_ci.ini -e esp32_ci ${{ matrix.esp32 }}
         #env:
