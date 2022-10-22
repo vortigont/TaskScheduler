@@ -27,23 +27,18 @@ jobs:
         python-version: [3.7]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: PIP Cache
+      - uses: actions/checkout@v3
+      - name: PIO Cache
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: PlatformIO Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.platformio
-          key: ${{ runner.os }}-pio-${{ hashFiles('**/lockfiles') }}
-          restore-keys: |
-            ${{ runner.os }}-pio-
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: ${{ runner.os }}-pio
+          #restore-keys: |
+          #  ${{ runner.os }}-pio
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
       - name: Install Platformio
@@ -55,5 +50,5 @@ jobs:
         run: |
           pwd
           find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
-          mkdir lib && mv src ./lib/
-          platformio ci -c platformio_ci.ini examples
+          #mkdir lib && mv src ./lib/
+          platformio ci -lib ./src -c platformio_ci.ini examples
