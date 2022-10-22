@@ -32,7 +32,7 @@ jobs:
           #- "examples/Scheduler_example11_Priority"
         esp32:
           - "examples/Scheduler_example00_Blink"
-          - "examples/Scheduler_example05_StatusRequest"
+          #- "examples/Scheduler_example05_StatusRequest"
 
     steps:
       - uses: actions/checkout@v3
@@ -64,9 +64,12 @@ jobs:
           platformio ci --lib ./src -c platformio_ci.ini -e avr_ci
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.avr }}
+      - name: Build run esp32
         run: |
           pwd
-          echo "run ESP32"
+          #find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
+          #mkdir lib && mv src ./lib/
+          #platformio ci --lib ./src -c platformio_ci.ini examples
           platformio ci --lib ./src -c platformio_ci.ini -e esp32_ci
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.esp32 }}
