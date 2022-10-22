@@ -24,7 +24,6 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        #python-version: [3.7]
         avr:
           - "examples/Scheduler_example00_Blink"
           - "Scheduler_example05_StatusRequest"
@@ -64,7 +63,7 @@ jobs:
           platformio ci --lib ./src -c platformio_ci.ini -e avr_common
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.avr }}
-        - name: Build run esp32
+      - name: Build run esp32
         run: |
           pwd
           #find examples -type f -name '*.ino' -exec sh -c 'mv "$1" "${1%.ino}.cpp"' _ {} \;
